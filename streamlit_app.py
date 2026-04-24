@@ -1,6 +1,6 @@
 # Import python packages
 import streamlit as st
-from snowflake.snowpark.context import get_active_session
+
 
 # Write directly to the app
 st.title(f" :cup_with_straw: Customize your smoothie :cup_with_straw: ")
@@ -53,3 +53,6 @@ if ingredients_list:
     if time_to_insert and name_on_order:
         session.sql(my_insert_stmt).collect()
         st.success('Your Smoothie is ordered,'+ name_on_order, icon="✅")
+
+cnx = st.connection("Snowflake")
+session = cnx.session()
